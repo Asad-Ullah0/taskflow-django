@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="wrap hero">
+  <span class="pill"><i class="dot"></i> Live task manager &middot; built by Asad</span>
+  <h1>Plan less.<br><span class="grad">Get more done.</span></h1>
+  <p class="lead">TaskFlow keeps every task, priority and deadline in one beautiful place. Add, edit and finish tasks instantly, with no page reloads.</p>
+  <div class="hero-cta">
+    {% if user.is_authenticated %}
+      <a class="btn btn-primary btn-lg" href="{% url 'dashboard' %}">Open my dashboard &rarr;</a>
+    {% else %}
+      <a class="btn btn-primary btn-lg" href="{% url 'register' %}">Start for free &rarr;</a>
+      <a class="btn btn-ghost btn-lg" href="{% url 'login' %}">I have an account</a>
+    {% endif %}
+  </div>
+
+  <div class="mock">
+    <div class="mock-bar"><i></i><i></i><i></i><span>taskflow / dashboard</span></div>
+    <div class="mock-stats">
+      <div><small>Total</small><b>12</b></div>
+      <div><small>In progress</small><b>4</b></div>
+      <div><small>Done</small><b>7</b></div>
+      <div><small>Progress</small><b class="grad">58%</b></div>
+    </div>
+    <div class="mock-task"><span class="chk ok">&#10003;</span><div><b class="strike">Design landing page</b><small>Done</small></div><em class="badge p-low">low</em></div>
+    <div class="mock-task"><span class="chk half">&#9685;</span><div><b>Build the Django API</b><small>In progress &middot; due tomorrow</small></div><em class="badge p-high">high</em></div>
+    <div class="mock-task"><span class="chk"></span><div><b>Deploy with Docker</b><small>To do &middot; due Friday</small></div><em class="badge p-medium">medium</em></div>
+  </div>
+</section>
+
+<section class="wrap features">
+  <div class="card feature"><div class="ficon">&#9889;</div><h3>Instant updates</h3><p>Create, complete and delete tasks without ever reloading the page.</p></div>
+  <div class="card feature"><div class="ficon">&#127919;</div><h3>Priorities &amp; deadlines</h3><p>Mark what matters most and spot overdue tasks at a glance.</p></div>
+  <div class="card feature"><div class="ficon">&#128202;</div><h3>Live progress</h3><p>A progress ring and stats show how far you have come today.</p></div>
+  <div class="card feature"><div class="ficon">&#128269;</div><h3>Search &amp; filter</h3><p>Find any task fast by text, status, priority or due date.</p></div>
+  <div class="card feature"><div class="ficon">&#128274;</div><h3>Private by default</h3><p>Every account sees only its own tasks. Simple and secure.</p></div>
+  <div class="card feature"><div class="ficon">&#128051;</div><h3>Runs on Docker</h3><p>Django, MySQL and Nginx start together with one command.</p></div>
+</section>
+
+<section class="wrap cta-band card">
+  <h2>Ready to get organized?</h2>
+  <p class="muted">Create your free account in under 10 seconds.</p>
+  {% if user.is_authenticated %}
+    <a class="btn btn-primary btn-lg" href="{% url 'dashboard' %}">Go to dashboard</a>
+  {% else %}
+    <a class="btn btn-primary btn-lg" href="{% url 'register' %}">Create account</a>
+  {% endif %}
+</section>
+{% endblock %}

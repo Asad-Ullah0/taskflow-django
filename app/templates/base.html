@@ -1,0 +1,39 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TaskFlow{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="aurora"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a href="{% url 'home' %}" class="brand"><span class="logo">&#10003;</span>TaskFlow</a>
+      <nav class="nav-links">
+        {% if user.is_authenticated %}
+          <a href="{% url 'dashboard' %}" class="link">Dashboard</a>
+          <span class="avatar" title="{{ user.username }}">{{ user.username|slice:":1"|upper }}</span>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-ghost btn-sm" type="submit">Logout</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="link">Login</a>
+          <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Get started</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="footer">Made with &#9829; by <b>Asad</b> &middot; TaskFlow &copy; 2026</footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
